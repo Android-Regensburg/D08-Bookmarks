@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Bookmarks</string>
+    <string name="app_description">Tap a bookmark to open it. Tap the bin button to remove a bookmark. Add a new bookmark by sharing a URL from your browser.</string>
+    <string name="bookmark_placeholder">Uni Regensburg</string>
+    <string name="bookmark_url_placeholder">www.uni-regensburg.de</string>
+</resources>
