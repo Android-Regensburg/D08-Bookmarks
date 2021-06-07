@@ -13,11 +13,11 @@ import java.util.ArrayList;
 import de.ur.mi.android.bookmarks.R;
 import de.ur.mi.android.bookmarks.bookmarks.Bookmark;
 
-public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkViewHolder> implements BookmarkViewHolderListener{
+public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkViewHolder> implements BookmarkViewHolder.BookmarkViewHolderListener {
+
 
     private ArrayList<Bookmark> bookmarks;
-    private BookmarkAdapterListener listener;
-
+    private final BookmarkAdapterListener listener;
 
     public BookmarkAdapter(BookmarkAdapterListener listener) {
         this.bookmarks = new ArrayList<>();
@@ -33,18 +33,13 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkViewHolder> im
     @Override
     public BookmarkViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.bookmark_view, parent, false);
-        BookmarkViewHolder vh = new BookmarkViewHolder(v);
-        return vh;
+        return new BookmarkViewHolder(v ,this);
     }
 
     @Override
     public void onBindViewHolder(@NonNull BookmarkViewHolder holder, int position) {
         Bookmark bookmark = bookmarks.get(position);
-        TextView title = holder.bookmarkView.findViewById(R.id.bookmark_title);
-        TextView url = holder.bookmarkView.findViewById(R.id.bookmark_url);
-        title.setText(bookmark.title);
-        url.setText(bookmark.url.toString());
-        holder.setBookmarkViewHolderListener(this);
+        holder.bindView(bookmark);
     }
 
     @Override
@@ -64,4 +59,13 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkViewHolder> im
         Bookmark bookmark = bookmarks.get(adapterPosition);
         listener.onBookmarkRemoveButtonClicked(bookmark);
     }
+
+    public interface BookmarkAdapterListener {
+
+        void onBookmarkSelected(Bookmark bookmark);
+
+        void onBookmarkRemoveButtonClicked(Bookmark bookmark);
+
+    }
+
 }

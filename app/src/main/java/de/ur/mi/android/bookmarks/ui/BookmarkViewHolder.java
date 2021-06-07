@@ -1,38 +1,48 @@
 package de.ur.mi.android.bookmarks.ui;
 
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import de.ur.mi.android.bookmarks.R;
+import de.ur.mi.android.bookmarks.bookmarks.Bookmark;
 
 public class BookmarkViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     public View bookmarkView;
-    private BookmarkViewHolderListener listener;
+    private final BookmarkViewHolderListener listener;
 
-    public BookmarkViewHolder(View v) {
+    public BookmarkViewHolder(View v, BookmarkViewHolderListener listener) {
         super(v);
-        ImageButton deleteButton = v.findViewById(R.id.bookmark_delete_button);
-        deleteButton.setOnClickListener(this);
         bookmarkView = v;
         bookmarkView.setOnClickListener(this);
+        bookmarkView.findViewById(R.id.bookmark_delete_button).setOnClickListener(this);
+        this.listener = listener;
     }
 
-    public void setBookmarkViewHolderListener(BookmarkViewHolderListener listener) {
-        this.listener = listener;
+    public void bindView(Bookmark bookmark) {
+        TextView title = bookmarkView.findViewById(R.id.bookmark_title);
+        TextView url = bookmarkView.findViewById(R.id.bookmark_url);
+        title.setText(bookmark.title);
+        url.setText(bookmark.url.toString());
     }
 
     @Override
     public void onClick(View v) {
-        if(listener == null) {
+        if (listener == null) {
             return;
         }
-        if(v instanceof ImageButton) {
+        if (v.getId() == R.id.bookmark_delete_button) {
             listener.onRemoveButtonClickedInView(this.getAdapterPosition());
         } else {
             listener.onViewClicked(this.getAdapterPosition());
         }
+    }
+
+    public interface BookmarkViewHolderListener {
+
+        void onViewClicked(int adapterPosition);
+        void onRemoveButtonClickedInView(int adapterPosition);
     }
 }
