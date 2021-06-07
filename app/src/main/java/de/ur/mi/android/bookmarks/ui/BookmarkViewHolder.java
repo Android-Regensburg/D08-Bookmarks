@@ -34,9 +34,9 @@ public class BookmarkViewHolder extends RecyclerView.ViewHolder implements View.
             return;
         }
         if (v.getId() == R.id.bookmark_delete_button) {
-            listener.onRemoveButtonClickedInView(this.getAdapterPosition());
+            listener.onRemoveButtonClickedInView(this.getBindingAdapterPosition());
         } else {
-            listener.onViewClicked(this.getAdapterPosition());
+            listener.onViewClicked(this.getBindingAdapterPosition());
         }
     }
 
