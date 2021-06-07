@@ -7,18 +7,16 @@ import java.net.URL;
 import java.util.Date;
 import java.util.concurrent.Executors;
 
-import de.ur.mi.android.bookmarks.database.BookmarkDatabase;
 import de.ur.mi.android.bookmarks.bookmarks.operations.AddBookmarkOperation;
 import de.ur.mi.android.bookmarks.bookmarks.operations.GetAllBookmarkOperation;
 import de.ur.mi.android.bookmarks.bookmarks.operations.RemoveBookmarkOperation;
+import de.ur.mi.android.bookmarks.database.BookmarkDatabase;
 
 public class BookmarkManager {
 
-    private BookmarkDatabase db;
-    private Context context;
+    private final BookmarkDatabase db;
 
     public BookmarkManager(Context context) {
-        this.context = context;
         db = BookmarkDatabase.build(context);
     }
 
@@ -47,8 +45,5 @@ public class BookmarkManager {
         GetAllBookmarkOperation operation = new GetAllBookmarkOperation(db, listener);
         Executors.newSingleThreadScheduledExecutor().submit(operation);
     }
-
-
-
 
 }

@@ -7,7 +7,6 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.net.URL;
 import java.util.ArrayList;
 
 import de.ur.mi.android.bookmarks.bookmarks.Bookmark;
@@ -32,7 +31,7 @@ public class BookmarksActivity extends AppCompatActivity implements BookmarkAdap
 
     private void handleIntent(Intent intent) {
         Bookmark bookmark = extractBookmarkFromIntent(intent);
-        if(bookmark != null) {
+        if (bookmark != null) {
             addBookmark(bookmark);
         }
     }
@@ -40,7 +39,7 @@ public class BookmarksActivity extends AppCompatActivity implements BookmarkAdap
     private Bookmark extractBookmarkFromIntent(Intent intent) {
         String intentAction = intent.getAction();
         String intentType = intent.getType();
-        if(intentAction == null || intentType == null) {
+        if (intentAction == null || intentType == null) {
             return null;
         }
         if (intentAction.equals(Intent.ACTION_SEND)) {

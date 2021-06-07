@@ -3,7 +3,6 @@ package de.ur.mi.android.bookmarks.ui;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,7 +32,7 @@ public class BookmarkAdapter extends RecyclerView.Adapter<BookmarkViewHolder> im
     @Override
     public BookmarkViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.bookmark_view, parent, false);
-        return new BookmarkViewHolder(v ,this);
+        return new BookmarkViewHolder(v, this);
     }
 
     @Override

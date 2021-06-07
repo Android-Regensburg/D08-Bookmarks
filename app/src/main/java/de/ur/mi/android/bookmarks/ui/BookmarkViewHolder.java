@@ -43,6 +43,7 @@ public class BookmarkViewHolder extends RecyclerView.ViewHolder implements View.
     public interface BookmarkViewHolderListener {
 
         void onViewClicked(int adapterPosition);
+
         void onRemoveButtonClickedInView(int adapterPosition);
     }
 }
